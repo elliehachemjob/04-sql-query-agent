@@ -177,4 +177,10 @@ if __name__ == "__main__":
     conn.commit()
     conn.close()
 
+
+def sqlite_uri(db_path: str, read_only: bool = True) -> str:
+    abs_path = os.path.abspath(db_path)
+    if read_only:
+        return f"sqlite:///file:{quote(abs_path)}?mode=ro&uri=true"
+    return f"sqlite:///{abs_path}"
 """
